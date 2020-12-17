@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Weight Conversion</title>
+	<style>
+		.box{
+			width: 600px;
+			height: 500px;
+			border: 2px solid #000;
+			margin: 0px auto;
+		}
+		h1{
+			text-align: center;
+			padding: 10px;
+		}
+		.menu>div{
+			width: 50%;
+			float: left;
+			text-align: center;
+		}
+		.input_area{
+			width: 100%;
+			float: left;
+			text-align: center;
+			margin-top: 20px;
+		}
+		h3,h4{
+			margin: 0px;
+		}
+	</style>
+</head>
+<body>
+	
+
+	<div class="box">
+		<h1>Weight Conversion</h1>
+
+
+		<div class="menu">
+			<div class="from">
+			    <label for="from">From</label>
+			    <select id="from">
+				   <option value=""></option>
+				   <option value="Kilogram">Kilogram</option>
+				   <option value="Gram">Gram</option>
+				   <option value="US ton">US ton</option>
+				   <option value="Pound">Pound</option>
+			    </select>
+			</div>
+
+			<div class="to">
+			    <label for="to">To</label>
+			    <select id="to">
+				   <option value=""></option>
+				   <option value="Kilogram">Kilogram</option>
+				   <option value="Gram">Gram</option>
+				   <option value="US ton">US ton</option>
+				   <option value="Pound">Pound</option>
+			    </select>
+			</div>
+		</div>
+
+		<div class="input_area">
+			<label for="input-box">Enter Your Number</label> <br>
+			<input type="number" id="input-box" > <br><br>
+			<button id="convert">Convert</button>
+			<button id="reset">Reset</button>
+		</div>
+
+		<div class="input_area">
+			<h3>Result: <span id="result-show"></span></h3>
+			
+		</div>
+
+	</div>
+
+<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- our script -->
+<script>
+	$(document).ready(function(){
+
+
+		$("#reset").click(function(){
+			reset_page();
+		})
+			
+		$("#convert").click(function(){
+			var input_val = Number($("#input-box").val());
+
+
+			var ans;
+
+
+			var from = $("#from").val();
+			var to   = $("#to").val();
+
+
+			if(from == "Kilogram" && to == "Gram"){
+				ans = kilogram_to_gram(input_val);
+			}else if(from == "Kilogram" && to == "US ton"){
+
+				ans = kilogram_to_us_ton(input_val);
+
+			}else if(from == "Kilogram" && to == "Pound"){
+
+				ans = kilogram_to_pound(input_val);
+				
+			}else if(from == "Gram" && to == "Kilogram"){
+
+				ans = gram_to_kilogram(input_val);
+				
+			}else if(from == "Gram" && to == "US ton"){
+
+				ans = gram_to_kilogram(input_val);
+				ans = kilogram_to_us_ton(ans);
+				
+			}else if(from == "Gram" && to == "Pound"){
+
+				ans = gram_to_kilogram(input_val);
+				ans = kilogram_to_pound(ans);
+
+			}else if(from == "US ton" && to == "Kilogram"){
+
+				ans = us_ton_to_kilogram(input_val);
+				
+			}else if(from == "US ton" && to == "Gram"){
+
+				ans = us_ton_to_kilogram(input_val);
+				ans = kilogram_to_gram(ans);
+				
+			}else if(from == "US ton" && to == "Pound"){
+
+				ans = us_ton_to_kilogram(input_val);
+				ans = kilogram_to_pound(ans);
+
+			}else if(from == "Pound" && to == "Kilogram"){
+
+				ans = pound_to_kilogram(input_val);
+				
+			}else if(from == "Pound" && to == "Gram"){
+
+				ans = pound_to_kilogram(input_val);
+				ans = kilogram_to_gram(ans);		
+				
+			}else if(from == "Pound" && to == "US ton"){
+
+				ans = pound_to_kilogram(input_val);
+				ans = kilogram_to_us_ton(ans);
+
+			}else if(from != "" && to != ""){
+				alert("Same Unit!");
+			}
+
+
+			$("#result-show").html(ans.toFixed(5));
+
+
+
+		}) // end click
+
+	}) // end jquery
+
+
+
+	function kilogram_to_gram(num){
+		// 1kg = 1000gm
+		result = num * 1000;
+		return result;
+	}
+
+	function gram_to_kilogram(num){
+		// 1000 gm = 1kg
+		result = num / 1000;
+		return result;
+	}
+
+	function kilogram_to_us_ton(num){
+
+		// 907 kg = 1 us ton (approximeate)
+		result = num / 907;
+		return result;
+	}
+	function us_ton_to_kilogram(num){
+
+		//  1 us ton =  907 kg (approximeate)
+		result = num * 907;
+		return result;
+	}
+
+	function kilogram_to_pound(num){
+
+		// 1kg = 22.0462 pound (approximeate)
+		result = num * 22.0462;
+		return result;
+	}
+	function pound_to_kilogram(num){
+		// 2.205 pound = 1 kg (approximeate)
+		result = num / 22.0462;
+		return result;
+	}
+
+
+
+
+
+	function reset_page(){
+		$('#from option:eq(0)').prop('selected', true)
+		$('#to option:eq(0)').prop('selected', true)
+		$("#result-show").html("");
+		$("#input-box").val('');
+	}
+
+
+</script>
+
+
+
+</body>
+</html>
