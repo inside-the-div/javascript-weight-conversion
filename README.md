@@ -1,4 +1,4 @@
-javascript weight converter project with source code
+#javascript weight converter project with source code
 To build a weight converter project first of all you need a clear knowledge about the units of weight, Also it will be the best practice if you convert the units on pen and paper first. In this post, I will provide you the complete guideline to convert weight between kilogram, gram us-ton,  pound, etc. 
 
 <h2>Weight conversion basic knowledge and formula:</h2>
@@ -21,8 +21,8 @@ pound to us-ton
 
 Kilogram to gram and gram to kilogram:
 
- Formula:  1 kilogram equal 1000 grams.
- So if you want to convert kilogram to gram you need to multiply the kilogram value by 1000.
+Formula:  1 kilogram equal 1000 grams.
+So if you want to convert kilogram to gram you need to multiply the kilogram value by 1000.
 Also if you want to convert gram to kilogram you need to divide the gram by 1000.
 
 Kilogram to us-ton and you a stone to kilogram:
